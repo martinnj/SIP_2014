@@ -1,0 +1,265 @@
+\section{Task 1.1 Code}
+\begin{verbatim}
+% Solution for part 1.1 of Assignment 1.
+% Written by: Martin Jørgensen, tzk173
+
+clear all;
+
+
+% Generate figure and image.
+figure(111);
+pixels = randi([0,1],20,20);
+h = imshow(pixels); axis on;
+
+% Fix the looks.
+set(gca,'XTick',0:20); xlabel('x');
+set(gca,'YTick',0:20); ylabel('y');
+
+% Get input and add the coordinate to the title, then color the
+% pixel and update the figure data.
+[x,y] = ginput(1);
+title(strcat('(' , num2str(round(x)) , ',' , num2str(round(y)) ,')'));
+pixels(round(y),round(x)) = 0; set(h,'CData',pixels);
+\end{verbatim}
+
+\section{Task 1.2 Code}
+\begin{verbatim}
+% Solution for part 1.2 of Assignment 1.
+% Written by: Martin Jørgensen, tzk173
+
+clear all;
+
+% Create figure and image data.
+h = figure(121);
+pixels = randi([0,1],60,60);
+
+% Create sub figure for imshow.
+subplot (1,3,1)
+imshow(pixels)
+title('imshow')
+
+% Create sub figure for image.
+subplot (1,3,2)
+image(pixels)
+title('image')
+
+% Create sub figure for imagesc.
+subplot (1,3,3)
+imagesc(pixels)
+title('imagesc')
+\end{verbatim}
+
+\subsection{Task 1.3 Code}
+\begin{verbatim}
+% Solution for part 1.3 of Assignment 1.
+% Written by: Martin Jørgensen, tzk173
+
+clear all;
+
+% Read the selected test image.
+I = imread('cell.tif');
+
+% Create parent figure.
+h = figure(131);
+
+% Go through the bits from least significant to most.
+for i=1:8
+    subplot(2,4,9-i); % Ordered most-significant leftmost.
+    colormap(gray);   % Force colormap.
+    imagesc(arrayfun(@(x) bitget(x,i),I)); % apply bitget to each pixel.
+    axis image; title(strcat('Bit:', num2str(i-1)));
+end
+\end{verbatim}
+
+\subsection{Task 1.4 Code}
+\begin{verbatim}
+% Solution for part 1.4 of Assignment 1.
+% Written by: Martin Jørgensen, tzk173
+
+clear all;
+
+% Read the selected test image.
+I = imread('monster.jpg');
+
+% Convert it.
+[H,S,V] = rgb2hsv(I);
+
+figure; % Create a new figure
+subplot(2,2,1); imshow(I); title('Original');  axis image;
+subplot(2,2,2); imshow(H); title('Hue'); axis image;
+subplot(2,2,3); imshow(S); title('Saturation'); axis image;
+subplot(2,2,4); imshow(V); title('Value'); axis image;
+\end{verbatim}
+
+\subsection{Task 1.5 Code}
+\begin{verbatim}
+% Solution for part 1.5 of Assignment 1.
+% Written by: Martin Jørgensen, tzk173
+
+clear all;
+
+% Read the selected test image.
+I = imread('monster.jpg');
+
+% Make Throw away resolution.
+I1 = imresize(I,0.09);
+I2 = imresize(I,0.05);
+I3 = imresize(I,[100 600]);
+
+figure(151); % Create a new figure.
+subplot(2,2,1); imshow(I); title('Original');  axis image on;
+subplot(2,2,2); imshow(I1); title('(I,0.9)'); axis image on;
+subplot(2,2,3); imshow(I2); title('(I,0.5)'); axis image on;
+subplot(2,2,4); imshow(I3); title('(I,[100 600])'); axis image on;
+
+
+% Upscaling experiments.
+
+% Warmup the image cache to get better times.
+for i=1:50
+    I4 = imresize(I1,2,'nearest');
+end
+
+% Get the proper timings.
+tic
+I4 = imresize(I1,2,'nearest');
+t1 = toc;
+
+tic
+I5 = imresize(I1,2,'bilinear');
+t2 = toc;
+
+tic
+I6 = imresize(I1,2,'bicubic');
+t3 = toc;
+
+
+figure(152);
+subplot(2,2,1); imshow(I1); title('Original');  axis image on;
+subplot(2,2,2); imshow(I4); axis image on;
+title(strcat('Interpolator: Nearest, Runtime in seconds: ',num2str(t1)));
+subplot(2,2,3); imshow(I5); axis image on;
+title(strcat('Interpolator: Bilinear, Runtime in seconds: ',num2str(t2)));
+subplot(2,2,4); imshow(I6); axis image on;
+title(strcat('Interpolator: Bicubic, Runtime in seconds: ',num2str(t3)));
+\end{verbatim}
+
+\subsection{Task 1.6 Code}
+\begin{verbatim}
+% Solution for part 1.6 of Assignment 1.
+% Written by: Martin Jørgensen, tzk173
+
+clear all;
+
+% Read the selected image.
+I = imread('railway.png');
+
+% Sleeper length is 2.5m
+% Do proper math in report.
+imtool(I);
+\end{verbatim}
+
+\subsection{Task 1.7 Code}
+\begin{verbatim}
+% Solution for part 1.7 of Assignment 1.
+% Written by: Martin Jørgensen, tzk173
+
+clear all;
+
+% Read the selected image.
+I1 = imread('rice.png');
+I2 = imread('cameraman.tif');
+
+% Add the images.
+I3 = I1 + I2;
+I4 = imadd(I1,I2);
+I5 = imadd(I1,I2,'uint16');
+
+% Subtract them.
+I6 = I1 - I2;
+I7 = imsubtract(I1,I2);
+
+% Display them.
+figure(171);
+colormap(gray);
+
+subplot(2,3,1);
+imagesc(I3); axis image;
+title('Matlab + operator.');
+
+subplot(2,3,2);
+imagesc(I4); axis image;
+title('Matlab imadd() function.');
+
+subplot(2,3,3);
+imagesc(I5); axis image;
+title('Matlab imadd(X,Y,uint16) function.');
+
+subplot(2,3,4);
+imagesc(I6); axis image;
+title('Matlab - operator.');
+
+subplot(2,3,5);
+imagesc(I7); axis image;
+title('Matlab imsubtract() function.');
+\end{verbatim}
+
+\subsection{Task 1.8 Code}
+\begin{verbatim}
+% Solution for part 1.8 of Assignment 1.
+% Written by: Martin Jørgensen, tzk173
+
+clear all;
+
+% Read the selected images.
+imgs = cell(1,10);
+for i=1:9
+    imgs{i} = imread(strcat('AT3_1m4_0',num2str(i),'.tif'));
+end
+imgs{10} = imread(strcat('AT3_1m4_10.tif'));
+
+figure(181);
+colormap(gray);
+for i=1:9
+    subplot(2,5,i);
+    imagesc(imabsdiff(imgs{i},imgs{i+1})); axis image;
+    title(strcat('Diff: ',num2str(i), '-', num2str(i+1)));
+end
+\end{verbatim}
+
+\subsection{Task 1.9 Code}
+\subsubsection{Blending function}
+\begin{verbatim}
+function [ C ] = imgBlend( A, B, wA, wB )
+  %imgBlend Performs a weighted blend of the images A and B.
+
+  %C = A.*wA + B.*wB;
+  C = imadd(immultiply(A,wA),immultiply(B,wB),'uint16');
+end
+\end{verbatim}
+
+\subsubsection{Experiment/Use}
+\todo[inline]{Insert when done.}
+\begin{verbatim}
+% Solution for part 1.9 of Assignment 1.
+% Written by: Martin Jørgensen, tzk173
+
+clear all;
+
+% Read the selected images.
+imgs = cell(1,10);
+for i=1:9
+    imgs{i} = imread(strcat('AT3_1m4_0',num2str(i),'.tif'));
+end
+imgs{10} = imread(strcat('AT3_1m4_10.tif'));
+
+res = imgBlend(imgs{1},imgs{2},2.5,4);
+for i=2:9
+    res = imgBlend(imgs{i},imgs{i+1},2.5,4);
+end
+
+% Show result.
+figure(191);
+colormap(gray);
+imagesc(res);
+\end{verbatim}

@@ -1,0 +1,29 @@
+\section{Task 1.5}
+The code used to generate the figures can be found in the appendix.
+\graphicc{0.8}{img/1_5_downscale.png}{The Cookie monster image sized down using
+  three different scales. The last one also ruins the aspect ratio of the
+  image.}{fig:1_5_down}
+
+In the upper right image, ther eis clear aliasing as the resolution falls and
+``smooth'' edges can no longer be drawn. It is still possible to make out all
+the details, evne though the curls in Cookie Monsters fur and the
+ligh-reflections on the green lego brick is harder to make out.  In the lower
+left image on Figure \ref{fig:1_5_down} several details are gone, the pupils in
+Cookie Monsters eyes as well as the reflections on the lego block are almost
+impossible to make out. The text on the jar is unreadable. The lower right image
+in the same figure does not loose the details, but because the aspext-ratio is
+skewed, some details like the text on the jar is a bit hard to make out.
+
+\graphicc{0.8}{img/1_5_upscale.png}{Results when scaling up a low resolution
+  image, in this case the original is the cookie monster picture scaled
+  down.}{fig:1_5_up}
+
+The upper right image in Figure \ref{fig:1_5_up} is created by giving all the
+new pixels the same value as the pixel that is nearest their position in the
+original image. This essentially ``stretches'' all the pixels and gives a very
+jagged look. When comparing it to the original they're identical since they're
+displayed in the same size. The two lower figures are taken by giving new pixels
+a value based on the average value in their neighborhood in the original
+image. ($2\times 2$ and $4\times 4$ neighborhoods respectively.) The edges gets
+a lot softer and less jagged, but the image gets a very fussy quuality to it, as
+if the camera was out of focus.

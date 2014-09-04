@@ -1,0 +1,26 @@
+\section{Task 1.2}
+To solve this I generated a $60\times 60$ image in the same way as Task 1.1, and
+displayed it using the three different methods \texttt{imshow}, \texttt{image}
+and \texttt{imagesc}. They are descriped in the list below.
+
+\graphicc{0.95}{img/1_2.png}{The same image displayed using the different
+  methods.}{fig:1_2}
+
+\begin{description}
+\item[\texttt{imshow}] Can take either a string with a filename/path, an image
+  handle or a matrix as input and displays it as an image. It has a number of
+  default attributes, such as disabling axis labels and ticks, and forcing
+  square pixels by making the x and y axis have the same distance between ticks.
+  It will also try to guess whether an image/matrix us in grayscale, RGB or
+  binary.
+\item[\texttt{image}] Takes a matrix as input which it will interpret as an
+  image. The resulting image object will attempt to stretch to fill whatever
+  window it is nested in, resulting in rectangular pixels. It will keep the tick
+  marks along the images. Will use the active colormap instead of trying to
+  guess what the data means.
+
+\item[\texttt{imagesc}] Have the same behaviours as image, but will scale the
+  image data to make use of the full colormap.
+\end{description}
+
+The source code is in the appendix.

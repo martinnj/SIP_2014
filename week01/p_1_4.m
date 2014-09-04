@@ -1,5 +1,5 @@
 % Solution for part 1.4 of Assignment 1.
-% Written by: Martin Jørgensen, tzk173
+% Written by: Martin JÃ¸rgensen, tzk173
 
 clear all;
 

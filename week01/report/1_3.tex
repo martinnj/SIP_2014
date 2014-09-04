@@ -1,0 +1,16 @@
+\section{Task 1.3}
+
+This task was solved by using a for loop and an array function to extract a
+given bit for all pixels at once and order it into sub plots. See appendix for
+source code.
+
+\graphicc{0.95}{img/1_3.png}{The bit plances obtained from splicing
+  \textit{cell.tif}}{fig:1_3}
+
+Just like in the books Figure 1.3 on page 5, we see that the most significant
+bits contain most of the coarse image information so the lower bits resembles
+noise. Since this is a grayscale image where objects that er visible are whiter
+(intensity close to 255) it makes sense that objects are visible in the higher
+bit planes. Thw lower bit planes encompas only small variations in the visiblity
+but a change in for isntance the 8'th bit will change the intensity with 128, or
+half of the possible intensity.

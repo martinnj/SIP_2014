@@ -1,0 +1,13 @@
+\section{Task 1.8}
+The code for this task can be found in the appendix.
+
+\graphicc{1.2}{img/1_8.png}{The differences between frames of the cell
+  ``animation''.}{fig:1_8}
+
+The difference is maxed by showing the images using \texttt{imagesc} which will
+scale it to use the entire grayscale colormap. This allows us to see details
+more clearly. The result from the operation is that pixels that change a lot,
+gets a stronger (whiter) color, so areas with much change will ``light
+up''. This can be usefull for motion tracking, if the background is largely
+static, like in this image, it i easy to track objects moving over it, simply
+follow the white areas around.

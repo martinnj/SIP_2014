@@ -1,0 +1,21 @@
+\section{Task 1.6}
+The code for this task is shown in the appendix.
+
+\graphicc{0.4}{img/1_6.png}{Measurements (in pixels) of the railway sleepers.}{fig:1_6}
+
+Figure \ref{fig:1_6} shows the measurements of the sleepers on the railway. 2 parallel lines were
+added at the end of the sleepers in order to facilitate easier measurements of the sleepers that are
+further into the background, since these were blurry.
+
+The first measures sleepers is $165,5$ pixels across. The second is $77.5$ px and the third is
+$35.75$ px. It is impossible to recreate the $(X,Y,Z)$ positions of the sleepers without any more information.
+We lack both focal length, and some information about positions in the scene. We can use the rate at
+which the sleepers get shorter, i.e. how fast the lines that go to the vanishing point converges, to
+make some assumptions about how ``wide'' things in the picture are along the $x$-axis, but apart from
+that there is little we can do.
+
+Example, I measured the distance between the two ``parallel'' lines to be $4.5$ px, at the same
+distance as the first white house, the wall of the white house is roughly $4.5$ px tall and $25.38$ px wide.
+Knowing that for every $4.5$ pixel we have roughly $2.5$ meters, the wall must be around $2.5$ meters
+tall and $14.1$ meters long. ($\frac{25.38px}{4.5px}2.5m = 14.1m$). This assumes that the wall is
+somewhat parallel to the camera.

@@ -1,0 +1,17 @@
+\section{Task 1.7}
+\graphicc{0.95}{img/1_7.png}{The results fo the different methods and
+  operations.}{fig:1_7}
+
+The two first pictures in Figure \ref{fig:1_7} is the result of two methods of
+adding images. Since the image is bound by the 8bit intensity limit, they
+produce the same result. The add the intensities of the images together, bound
+it at 255 and displays it. When letting \texttt{imadd} (upper right image) give
+16 bit output, the result is vastly different. The increased number of different
+shades means that values that become higher than 255 does not jost go white. The
+images are showed with \texttt{imagesc} in order to increase the visibility of
+the number of intensities.
+
+For the last two images, just like the first, there is no
+difference. Intensities cannot go below 0, and as such they just go black. It is
+not possible to specify 16bit output for \texttt{imsubtract}, but it would not
+help, since we cannot display a negative intensity.

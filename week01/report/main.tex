@@ -1,0 +1,52 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{ucs}
+\usepackage[T1]{fontenc}
+\linespread{1.2}
+\usepackage{amsmath,amssymb,amsthm,amsfonts,ulem}
+\usepackage{courier, fourier}
+\usepackage{clrscode3e}
+\usepackage{mdwlist}
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{3}
+\usepackage{todonotes}
+\usepackage{hyperref}
+
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{mdwlist}
+\usepackage{wrapfig}
+\usepackage{caption}
+\newcommand{\graphicc}[4]{\begin{figure}[H] \centering
+            \includegraphics[width={#1\textwidth}, keepaspectratio=true]{{#2}}
+            \caption{{#3}} \label{#4} \end{figure}}
+
+\title{Assignment 1 - Signal and Image Processing 2014}
+\author{Martin Jørgensen}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\pagebreak
+
+\input{1_1.tex}
+\input{1_2.tex}
+\input{1_3.tex}
+\input{1_4.tex}
+\input{1_5.tex}
+\input{1_6.tex}
+\input{1_7.tex}
+\input{1_8.tex}
+\input{1_9.tex}
+
+
+\appendix
+\section{Appendix}
+\input{code.tex}
+
+
+
+\end{document}
