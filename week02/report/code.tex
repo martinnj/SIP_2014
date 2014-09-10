@@ -1,0 +1,56 @@
+\section{Task X.X.X Code}
+\begin{verbatim}
+\end{verbatim}
+
+
+\section{Task 2.1.3 Code}
+\begin{verbatim}
+% Solution for part 1.3 of Assignment 2.
+% Written by: Martin Jørgensen, tzk173
+
+clear all;
+
+I = imread('pout.tif');
+
+hist = imhist(I);
+
+cumhist = cumsum(hist);
+
+h = figure(213); set(h,'Color','White');
+subplot(1,2,1); bar(hist,'FaceColor','black'); axis tight ; grid on;
+set(gca,'Xtick',1:16:300); set(gca,'TickDir','out');
+title('Histogram for pout.tif','FontSize',14);
+
+subplot(1,2,2); bar(cumhist,'FaceColor','black'); axis tight ; grid on;
+set(gca,'Xtick',1:16:300); set(gca,'TickDir','out');
+title('Cummulative Histogram for pout.tif','FontSize',14);
+\end{verbatim}
+
+\section{Task 2.1.4 Code}
+\subsection{FPI function}
+\begin{verbatim}
+function [ CI ] = fpi( I, CDF )
+%fpi Applies the CDF function to all pixels in the image.
+
+CI = arrayfun(@(x) CDF(x), double(I));
+
+end
+\end{verbatim}
+
+\subsection{FPI function test}
+\begin{verbatim}
+% Solution for part 1.4 of Assignment 2.
+% Written by: Martin Jørgensen, tzk173
+
+clear all;
+
+I = imread('pout.tif');
+
+% Test the fpi function by using a simple addition function.
+Iout = fpi(I,@(x) x+100.4);
+
+% Test some pixels :)
+res0 = (Iout(1,1) - double(I(1,1)) == 100.4)
+res1 = (Iout(123,200) - double(I(123,200)) == 100.4)
+res2 = (Iout(3,200) - double(I(3,200)) == 100.4)
+\end{verbatim}
