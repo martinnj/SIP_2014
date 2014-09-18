@@ -1,56 +1,55 @@
-\section{Task X.X.X Code}
-\begin{verbatim}
-\end{verbatim}
+%\section{Task X.X.X Code}
+%\codefig{label}{file}{firstline}{lastline}{description}
+
+\section{Task Code}
+\subsection{Task 2.1.3 Code}
+\codefig{213}{../p13.m}{1}{29}{Code for solution.}
+
+\subsection{Task 2.1.4 Code}
+\codefig{214}{../p14.m}{1}{16}{Code for solution.}
+
+\subsection{Task 2.1.5 Code}
+\codefig{215}{../p15.m}{1}{10}{Code for solution.}
+
+\subsection{Task 2.1.6 Code}
+\codefig{216}{../p16.m}{1}{22}{Code for solution.}
+
+\subsection{Task 2.1.7 Code}
+\codefig{217}{../p17.m}{1}{21}{Code for solution.}
+
+%\subsection{Task 2.1.8 Code}
+%\codefig{218}{../p18.m}{1}{29}{Code for solution.}
+
+\subsection{Task 2.1.9 Code}
+\codefig{219}{../p19.m}{1}{23}{Code for solution.}
 
 
-\section{Task 2.1.3 Code}
-\begin{verbatim}
-% Solution for part 1.3 of Assignment 2.
-% Written by: Martin Jørgensen, tzk173
+\subsection{Task 2.2.3 Code}
+\codefig{223}{../p23.m}{1}{60}{Code for solution.}
 
-clear all;
+\subsection{Task 2.2.4 Code}
+\codefig{224}{../p24.m}{1}{17}{Code for solution.}
 
-I = imread('pout.tif');
+\subsection{Task 2.2.5 Code}
+\codefig{225}{../p25.m}{1}{17}{Code for solution.}
 
-hist = imhist(I);
 
-cumhist = cumsum(hist);
 
-h = figure(213); set(h,'Color','White');
-subplot(1,2,1); bar(hist,'FaceColor','black'); axis tight ; grid on;
-set(gca,'Xtick',1:16:300); set(gca,'TickDir','out');
-title('Histogram for pout.tif','FontSize',14);
+\section{Functions}
+\subsection{cumhist code}
+\codefig{cumhist}{../cumhist.m}{1}{10}{Code for \texttt{cumhist} function.}
 
-subplot(1,2,2); bar(cumhist,'FaceColor','black'); axis tight ; grid on;
-set(gca,'Xtick',1:16:300); set(gca,'TickDir','out');
-title('Cummulative Histogram for pout.tif','FontSize',14);
-\end{verbatim}
+\subsection{finv code}
+\codefig{finv}{../finv.m}{1}{6}{Code for \texttt{finv} function.}
 
-\section{Task 2.1.4 Code}
-\subsection{FPI function}
-\begin{verbatim}
-function [ CI ] = fpi( I, CDF )
-%fpi Applies the CDF function to all pixels in the image.
+\subsection{fpi code}
+\codefig{fpi}{../fpi.m}{1}{6}{Code for \texttt{fpi} function.}
 
-CI = arrayfun(@(x) CDF(x), double(I));
+\subsection{histap code}
+\codefig{histap}{../histap.m}{1}{13}{Code for \texttt{histap} function.}
 
-end
-\end{verbatim}
+\subsection{histmatch code}
+\codefig{histmatch}{../histmatch.m}{1}{16}{Code for \texttt{histmatch} function.}
 
-\subsection{FPI function test}
-\begin{verbatim}
-% Solution for part 1.4 of Assignment 2.
-% Written by: Martin Jørgensen, tzk173
-
-clear all;
-
-I = imread('pout.tif');
-
-% Test the fpi function by using a simple addition function.
-Iout = fpi(I,@(x) x+100.4);
-
-% Test some pixels :)
-res0 = (Iout(1,1) - double(I(1,1)) == 100.4)
-res1 = (Iout(123,200) - double(I(123,200)) == 100.4)
-res2 = (Iout(3,200) - double(I(3,200)) == 100.4)
-\end{verbatim}
+\subsection{midhist code}
+\codefig{midhist}{../midhist.m}{1}{10}{Code for \texttt{midhist} function.}

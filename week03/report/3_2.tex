@@ -1,0 +1,111 @@
+\section{Fourier Transform – Practice}
+\subsection{Question (a)}
+\begin{quote}
+  \textbf{Use Matlab to calculate the power spectrum of \textit{lena.tif}. Apply
+    the function \texttt{fftshift} and interpret the result representation of
+    the image.}
+\end{quote}
+
+\graphicc{0.6}{img/p2a.png}{The power spectrum of \textit{lena.tif} rendered with the
+\texttt{jet} color map.}{fig:p2a}
+
+The code for producing Figure \ref{fig:p2a} can be found in the appendix.
+
+I am not quite sure what the power spectrum represents, but after discussing with my group we agreed
+that it is the change in frequency/intensity in an area of the image.
+
+\subsection{Question (b)}
+\begin{quote}
+  \textbf{Write two programs: 1 that implements convolution as a nested for loop
+    of the spatial representation of the kernel and image, 2 that implements
+    the same convolution using Fast Fourier Transformation. Compare the two both
+    in terms of the result and the computation time for a number of kernel sizes
+    and image sizes.}
+\end{quote}
+
+The code to produce Figure \ref{fig:p2b} can be found in the appendix along with
+the code for the requested functions. Please be aware that the time is
+calculated as an average of 10 iterations, which may take some time on slower
+computers.
+
+\graphicc{1}{img/p2b.png}{The result of running my convolution methods as well
+  as the time for a single run in seconds.}{fig:p2b}
+
+As the figure shows I had some issues making the FFT method give as clear output
+as the for loop method. So while it is currently much faster than the for loop
+method, the result is also less visible.  In small version of the image it can
+be hard to see that the FFT method actually produces an image from the edge
+detection kernel, but when it is magnified it's easy to make our the contours.
+
+It is also clear that the FFT method is vastly faster than the loop method that applies the kernel
+to every pixel, one by one.
+
+\subsection{Question (c)}
+\begin{quote}
+  \textbf{Write a program that adds the function $a_0cos(v_0x + w_0y)$ to
+    \textit{lena.tif}, and evaluate and describe the power spectrum of the
+    result. Design a filter, which removes and such planar waves given $v_0$ and
+    $w_0$.}
+\end{quote}
+
+The code for producing Figure \ref{fig:p2c} can be found in the appendix along
+with the code for adding and attempting to remove the noise. Please note that the code uses a third party command
+from Matlab file exchange\footnote{\url{http://www.mathworks.com/matlabcentral/fileexchange/7943-freezecolors---unfreezecolors}}
+to let me use different colormaps in the same figure. This command is the work of John Iversen.\footnote{John Iversen, 2005-10 - john\_iversen@post.harvard.edu}
+
+\graphicc{1}{img/p2c.png}{\texttt{lena.tif} with noise, power spectrum and after 2
+  different removal attempts.}{fig:p2c}
+
+We can see that the added noise carries over to the power spectrum.
+  
+It is possible to remove much of the noise using a simple smoothing kernel, that
+is a kernel that takes some values from the area around it and mixes it with the
+current pixel value. Figure \ref{fig:p2c} is created by applying the kernel
+\[
+    k = \begin{bmatrix}
+            2 & 2 & 2 \\
+            2 & 3 & 2 \\
+            2 & 2 & 2
+        \end{bmatrix}
+\]
+This kernel is not based in the values $v0$ and $w0$ of course. I was unable to
+find a proper way to utilize these values since the kernel is unaware of it's
+current position, it will not be able to scale the values correctly (by $x$ and
+$y$) anyway.
+
+I tried to construct a function to counteract the noise based on the fact that
+we know most of the function that creates the noise. Since the noise addition is
+done by this formulae $I_2 = I+a_0cos(v_0x + w_0y)$ and we know $cos(v_0x +
+w_0y)$ we can simple subtract that from the pixel value. This of course means
+we don't know the factor $a_0$ but it produces reasonable results, even though
+they are not as good as the simple smoothing kernel used above.
+
+\subsection{Question (d)}
+\begin{quote}
+  \textbf{Write the function \texttt{scale}, which implements convolution with a
+    isotropic Gaussian kernel, parametrized with the its standard deviation - the scale. Apply it to
+    \textit{lena.tif} for a range of scales.}
+\end{quote}
+
+The assignment text seems a little vague or ambiguous, so I chose to interpret this as we should
+create a function where you give an image and a ``scale''. The function will then set a standard
+deviation for you. The code for producing Figure \ref{fig:p2d} and the code for the \texttt{scale}
+function can be found in the appendix.
+
+\graphicc{1}{img/p2d.png}{The scale function used on \textit{lena.tif} with different sizes.}{fig:p2d}
+
+The function sets the standard deviation ($\sigma$) based in the scale, it $\sigma$ value is set to
+be one third or the size, based on a tip from the assignment last week.
+
+\subsection{Question (e)}
+\begin{quote}
+  \textbf{Spatial derivatives may be written as the multiplication of a kernel
+    in the Fourier Domain.  Derive the exact relation and discuss its
+    practicality.}
+\end{quote}
+
+\subsection{Question (f)}
+\begin{quote}
+  \textbf{Implement a function which takes 2 derivative orders and a
+    2-dimensional image, and returns the derivative of the image using FFT.}
+\end{quote}

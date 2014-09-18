@@ -1,0 +1,135 @@
+\section{Fourier Transform – Theory}
+\subsection{Question (a)}
+\begin{quote}
+  \textbf{What is the difference between a Fourier series and the Fourier
+    Transform?}
+\end{quote}
+
+%\todo[inline]{This is quoted from page 115, in the block with label
+%  (5). Rephrase or expand.}
+
+\noindent Page 115 from the book gives the following definitions:
+\begin{description}
+\item[Fourier Series] breaks down a periodic signal into harmonic functions of
+  discrete frequencies.
+\item[Fourier Transform] breaks down a non-periodic signal into harmonic
+  functions of continuously varying frequencies.
+\end{description}
+
+The series best used for a signal that have obvious periods and repeats while
+the transform can be applied to any signal, by assuming that the signal period
+is going towards $\infty$.
+
+\subsection{Question (b)}
+\begin{quote}
+  \textbf{Prove that the continuous Fourier transform of a real and even
+    function is real and even.}
+\end{quote}
+
+% Logical motivation:
+I am not great with formalism, but since the point of Fourier transforms is to
+represent a function/signal it only makes sense that if the input is real and
+even, the output needs to be as well. Below is some argumentation that should
+further strengthen the notion that this is indeed the case.
+%, or the method would be very poor at representing signals.
+
+% Der står noget på side 119 mellem 5.5 og 5.6 (se 5.6 hvor c_k og c_-k bliver
+% udregnet som imaginære tal der går ud med hinanden.)
+
+% Exponential function: e^{a+bi} = e^a (cos b + i sin b) (a in our case is
+% always 0, so there will be no e^a in the right side.)
+
+% For some value n the we integrate for both the positive and negative version
+% since the integration is from -infty to infty. We thus have:
+
+% below e^0 can be replaced by 1. all of the lifted part of e can be negated
+% because a negative n will propegate its sign.
+
+% e^{i\frac{2 pi n}{lambda}} = 1(cos(\frac{2 pi n}{lambda}) + i sin(\frac{2 pi n}{lambda}))
+% e^{-i\frac{2 pi n}{lambda}} = 1(cos(\frac{2- pi n}{lambda}) + i sin(\frac{-2 pi n}{lambda}))
+
+Since we integrate from $-\infty$ to $\infty$, we will evaluate for both the
+positive and negative value for any $n$.  The only imaginary part of the
+transform comes from the exponential function, so lets take a look at that
+\[
+    e^{a+bi} = e^a (cos(b) + i\cdot sin(b))
+\]
+In our case $a = 0$ so the exponential function so we have $1(cos(b) + i\cdot sin(b))$
+instead. so for both $n$ and $-n$ we get:
+\begin{align*}
+  e^{i\frac{2 \pi n}{\lambda}} &= 1(cos(\frac{2 \pi n}{\lambda}) + i\cdot sin(\frac{2 \pi n}{\lambda}))\\
+  e^{-i\frac{2 \pi n}{\lambda}} &= 1(cos(\frac{2 \pi n}{\lambda}) + -i\cdot sin(\frac{2 \pi n}{\lambda}))
+\end{align*}
+
+When we in the end integrate over both of these, the imaginary and negative
+imaginary components will ``cancel each other out'' and this ensures that the
+resulting transform is real.
+
+\subsection{Question (c)}
+\begin{quote}
+  \textbf{Derive the continuous Fourier transform of $\delta(x - d) + \delta(x +
+    d)$ for some constant $d$}
+\end{quote}
+
+Assuming the $\delta$ is the Dirac Impulse Function (which always integrate to
+$1$), it does not matter if you add anything to the "x" it just shifts along the
+$x$-axis. Since there is 2 delta functions added together, the resulting $F(k)$ is
+$2$. (See table 5.2 on page 123), this is just for a single delta function
+though.
+
+\subsection{Question (d)}
+\begin{quote}
+  \textbf{Consider the box function
+  \[
+    b_a(x) = \begin{cases}
+      1/a  & \text{if } |x| \leq \frac{a}{2} \\
+      0    & \text{otherwise.}
+      \end{cases}
+  \]
+  show that}
+  \begin{itemize*}
+  \item[i)] \textbf{$\int_{-\infty}^\infty b_a(x) dx = 1$}\\
+
+    Since integration is the area under the graph, and we have a box function,
+    we can rewrite the integration as a simple $a = l \times w$ formulae. This
+    can then be solved to be 1.
+      \begin{align*}
+        1 &= \frac{1}{a}2\frac{a}{2} \\
+          &= \frac{2}{a} \frac{a}{2} \\
+          &= 1
+      \end{align*}
+      %\todo[inline]{Do a better job at explaining why we can use the simple
+      %  formulae rather than the integration.}
+
+    \item[ii)] \textbf{the continuous Fourier transform of b using (5.10) is
+        $B(k) = \frac{1}{ak\pi} sin \frac{ak}{2}$. Rewrite $B(k)$ using $sinc(x)
+        = \frac{sin(x)}{x}$.}\\
+    % The rectangle function can be used maybe?
+    \begin{align*}
+      B(k) &= \frac{1}{ak\pi}sin\left( \frac{ak}{2}\right) \\
+           &= \frac{1}{\pi} \frac{1}{ak} sin \left( ak\frac{1}{2} \right) \\
+           &= \frac{1}{2\pi} \frac{1}{ak\frac{1}{2}} sin \left( ak\frac{1}{2} \right) \\
+           &= \frac{1}{2\pi} \frac{sin\left( ak\frac{1}{2} \right)}{ak\frac{1}{2}} \\
+           &= \frac{1}{2\pi} sinc \frac{ak}{2}
+    \end{align*}
+
+
+
+    \item[iii)] \textbf{$\text{lim}_{a \rightarrow 0}B(k) = \frac{1}{2\pi}$
+        (Hint: $\text{lim}_{x \rightarrow 0}\frac{sin(x)}{x} = 1$). Does this
+        prove an entry in Table 5.2?}\\
+
+        By the tip we have $\text{lim}_{x \rightarrow 0} \frac{sin(x)}{x} = 1$, that means that if $a \rightarrow 0$ for
+        $\frac{1}{2\pi}sinc \left( \frac{ak}{2} \right)$ we have $\text{lim}_{a \rightarrow 0} \frac{1}{2\pi}sinc \left( \frac{ak}{2} \right) =
+        \frac{1}{2\pi}1$ which equals $\text{lim}_{a \rightarrow 0} B(k) = \frac{1}{2\pi}$.
+
+
+    \item[iv)] \textbf{The filter $b$ has compact support in space (only use a
+        small set of neightbouring pixels in $x$). Is the same true in the
+        frequency domain, $k$? Explain your answer.}\\
+        
+    Since the transformation into the frequency domain is reversible, there must be a correspondence
+    between the two. So if $b$ has compact support in normal space, it will also have it in the
+    frequency space $k$.
+  \end{itemize*}
+\end{quote}

@@ -22,6 +22,8 @@
 \usepackage{mdwlist}
 \usepackage{wrapfig}
 \usepackage{caption}
+
+% usage: \graphicc{width}{file}{caption}{label}
 \newcommand{\graphicc}[4]{\begin{figure}[H] \centering
             \includegraphics[width={#1\textwidth}, keepaspectratio=true]{{#2}}
             \caption{{#3}} \label{#4} \end{figure}}
@@ -58,7 +60,7 @@
     stringstyle=\color{string},
 }
 
-\title{Assignment 2 - Signal and Image Processing 2014}
+\title{Assignment 3 - Signal and Image Processing 2014}
 \author{Martin Jørgensen, tzk173}
 \date{\today}
 
@@ -69,8 +71,8 @@
 \tableofcontents
 \pagebreak
 
-\input{2_1.tex}
-\input{2_2.tex}
+\input{3_1.tex}
+\input{3_2.tex}
 
 
 \appendix

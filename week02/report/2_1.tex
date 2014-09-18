@@ -1,27 +1,96 @@
 \section{Task 2.1 Histogram-based processing}
 
-\subsection{2.1.1}
-\subsection{2.1.2}
-
-\subsection{2.1.3}
-The code for this task can be found in the appendix. An increase in of the function means that the
-intensity value corresponding to the X coordinate of the bar is present in the picture. The higher
-the increase the more frequent the value is in the image. Flat regions represent intensities that
-are not present in the image.
-
-
-\subsection{2.1.4}
-Code can be found in the appendix. I created the function \texttt{fpi} that takes an image (or any
-Matlab array) as input as well as a function, the function could be a CDF function, or as in my
-test, any other function that can be applied to a number. The function will apply the function to
-each pixel individually and return the result.
-
-To test it I applied a simple addition function that would add $100.4$ to all intensities, testing
-some pixels shows the function to work.
+\subsection{Task 2.1.1}
+The CDF is the integration of the PDF over certain value ranges. As such the PDF
+is the probability of a pixel becoming exactly ``some value $x$'', while the CDF
+is the probability that a pixel takes a value ``smaller than or equal to $x$''.
+Variations in the CDF will thus represent an increased probability for the
+distinct value occurring. This behaviour is similar to the histogram and
+cumulative histogram in Figure \ref{fig:1_3}.
 
 
-\subsection{2.1.5}
-\subsection{2.1.6}
-\subsection{2.1.7}
-\subsection{2.1.8}
-\subsection{2.1.9}
+\subsection{Task 2.1.2}
+The PDF of a constant image would be $1$ for the value that is constant in the
+image and $0$ for all other. The CDF would be $0$ until the constant value is
+reached, and then become $1$ for the reminder of the range.
+
+
+\subsection{Task 2.1.3}
+The code for this task can be found in the appendix. An increase in of the
+function means that the intensity value corresponding to the $X$ coordinate of
+the bar is present in the picture. The higher the increase the more frequent the
+value is in the image. Flat regions represent intensities that are not present
+in the image.
+
+\graphicc{1.0}{img/1_3.png}{The histogram, normalized histogram and cumulative
+  histogram for the file \textit{pout.tif}.}{fig:1_3}
+
+
+\subsection{Task 2.1.4}
+Code can be found in the appendix. I created the function \texttt{fpi} that
+takes an image (or any Matlab array)  and applies a CDF to it.
+
+\graphicc{0.7}{img/1_4.png}{The picture \textit{pout.tif}, before and after the
+  CDF is added using \texttt{fpi}.}{fig:1_4}
+
+Figure \ref{fig:1_4} shows how applying an images CDF to the image itself using
+the \texttt{gpi} function will look for the image \textit{pout.tif}.
+
+\subsection{Task 2.1.5}
+Genrally the CDF is not invertable since several values can produce the same
+probability/result, it is not possible in all cases to calculate the value that
+caused a certain probability.
+
+The code for the implementation can be found in the appendix. The solution is a
+function that given a function $f$ and a probability $l$ will find a value $s$
+determined by $\text{min}\{s | f(s) \geq l \}$. This is done by first
+acalculating $f(s)$ for all $s \in [0..255]$ then get the indexes for all the
+entries that are greater than or equal to $l$, pulling the $s$ values with that
+index and then picking the smallest using \texttt{min}.
+
+The test was simply to pick $l = 0.0239$ and the CDF of \textit{pout.tif} as
+CDF. The function returns $0.0240$ which is the next entry in the CDF that is
+larger than our $l$.
+
+
+\subsection{Task 2.1.6}
+Code is included in the appendix. For this assignment I created the function
+\texttt{histmatch} which tales two images as argument, a source image($C_x$ in
+the book.) and a target image ($C_z$ in the book.) and returns a copy of the
+source image, but with the matched histogram.  The result of the testrun can be
+seen in Figure \ref{fig:1_6}.
+
+\graphicc{1.0}{img/1_6.png}{The original, target and combined images with their
+  respective histograms.}{fig:1_6}
+
+
+\subsection{Task 2.1.7}
+The code for this task can be found in the appendix.
+
+\graphicc{1.0}{img/1_7.png}{The original image and the results of applying the
+  CDF using \texttt{histap} and \texttt{histeq}.}{fig:1_7}
+
+For this task I took some code from \texttt{histmatch} and created
+\texttt{histap} which applies a given histogram instead of calculating it
+first. As such the function is very similar.
+
+
+\subsection{Task 2.1.8}
+I ran out of time before I could complete this task.
+
+\subsection{Task 2.1.9}
+The code for this task can be found in the appendix.
+\graphicc{1.0}{img/1_9.png}{The two movies frames before and after the histogram
+  alteration.}{fig:1_9}
+
+For this task I created a function called \texttt{midhist} which creates a
+cumulative histogram that corresponds to the average of the input histograms. It
+is then applied to the frames resulting in what you see in Figure \ref{fig:1_9}.
+
+For applying this technique to an arbitrary number of images the histogram could
+be computed like this
+\[
+    C_z = \frac{1}{N}\sum^N_{n=1} C_n(I_n)
+\]
+Where $K$ is the total number of pictures and $I_n$ is the currently processing
+picture. $C_z$ should then be applied to all the pictures in the sequence.

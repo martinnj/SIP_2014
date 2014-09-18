@@ -1,0 +1,7 @@
+function [ I2 ] = scale( I1, scale )
+%scale implements 
+    gf = fspecial('gaussian', 3*sigma, sigma);
+    I2 = filter2(gf, I);
+
+end
+

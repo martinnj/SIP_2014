@@ -4,4 +4,3 @@ function [ CI ] = fpi( I, CDF )
 CI = arrayfun(@(x) CDF(x), double(I));
 
 end
-
