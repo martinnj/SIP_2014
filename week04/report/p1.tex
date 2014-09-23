@@ -1,0 +1,23 @@
+\section{Task 1}
+The code for creating Figure \ref{fig:p1} can be found in the appendix.
+
+\graphicc{0.8}{img/p1.png}{The different kernels produced for the task.}{fig:p1}
+
+Figure \ref{fig:p1} shows the four kernels used for this task. The top left is the kernel produced
+with the deviation value of $\sigma = 10$, and the upper right us the kernel for deviation value
+$\tau = 5$. The lower left figure us the kernel produced when the deviation value is set to
+$\sqrt{\sigma^2 + \tau^2}$, while the lower right shows the resulting kernel from convolving the
+two upper kernels.
+There is a number of remarks to be made here. In order to eliminate errors from ``border cases'',
+the size of the kernels was set to be $200\times 200$ so that all the kernels would have 0 weight
+values around the edges. The kernels are then cropped so we can see the most interesting part, the
+centres.
+
+The two last lower kernels look very similar but it is worth noticing that the kernel produced by
+convolution have tiny ``spikes/rays'' emanating from the centre along the x- and y-axis. This
+becomes almost invisible when the images are zoomed back out and will only cause minor differences
+when applied to pictures.
+
+I made several experiments with different kernel sizes and ratios between $\sigma$ and $\tau$ and
+all yielded this same result. The pictures from the experiments are omitted to preserve space. But
+can easily be recreated by changing the values in the code in Figure \ref{code:p1} in the appendix.
