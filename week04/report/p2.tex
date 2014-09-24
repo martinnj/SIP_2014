@@ -1,0 +1,18 @@
+\section{Task 2}
+\subsection{Part a}
+First, lets substitute equation 5 into equation 6 from the assignment we get
+\begin{align}
+  H(x,y,\tau) &= I_{xx}(x,y,\tau) + I_{yy}(x,y,\tau) \\
+              &= \tau^{\gamma(2+0)} \frac{\partial^2(x,y,\tau)}{\partial x^2} + \tau^{\gamma(0+2)}\frac{\partial^2I(x,y,\tau)}{\partial y^2} \\
+              &= \tau^2 \frac{\partial^2I(x,y,\tau)}{\partial x^2} + \tau^2\frac{\partial^2I(x,y,\tau)}{\partial y^2} \\
+              &= \tau^2 \left(\frac{\partial^2I(x,y,\tau)}{\partial x^2} + \frac{\partial^2I(x,y,\tau)}{\partial y^2}\right) \\
+              &= \tau^2 \left( I(x+1,y,\tau )+I(x-1,y,\tau )-4I(x,y,\tau )+I(x,y+1,\tau )+I(x,y-1,\tau ) \right)
+\end{align}
+which is the analytical expression we are looking for.
+
+\subsection{Part b/c/d}
+I am unsure how to do partial derivatives on the convolution operation needed in order to do a proper
+derivation of $I(x,y,\tau)$ in the analytical case. I tried using Matlab to convolve the gaussian and
+still maintain the symbols needed to do derivation and equation solving later, but was unable to do so.
+
+Note that this problem also persists for Task 3, which I was unable to complete.

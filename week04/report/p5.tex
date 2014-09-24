@@ -5,4 +5,13 @@ The code for creating Figure \ref{fig:p5} can be found in the appendix.
 \graphicc{1}{img/p5.png}{Original image, noisy image and the image after testing the \texttt{ILSI}
 function with different frequency band filters.}{fig:p5}
 
-\todo[inline]{Some of dat text plox.}
+Figure \ref{fig:p5} shows the original \textit{lena.tif} image as well as the noisy version and
+different recovered version. The recovered version are produced by using the inverse filtering
+technique and applying a band pass filter in order to eliminate noise. I tried several different
+frequencies for the filter, the ones showed in the figure are a select few that represent the most
+obvious changes in the output. We can see that the filter works best around $0.1$ and $0.2$.
+Higher and lower causes the image to degrade into noise again. It is worth noticing that the noise
+is different for high and low frequency filters. It is worth noticing that Matlab makes a render
+error when thee frequency is $1$, at this value, all of the data gets stripped and all the pixels
+take on the same value $104.7xxx$ where the last digits very from run to run, but it is always the
+same value for all pixels. So the image should be monotone.

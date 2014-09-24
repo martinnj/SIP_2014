@@ -13,8 +13,7 @@ n = rand(size(I)).*20;
 % Create image with noise.
 I1 = LSI(I,h,n);
 
-% Example 6.3 stuff. Auch.
-%NSR = sum(n(:).^2)/sum(I(:).^2)
+% Create correlation data
 NP = abs(fftn(n)).^2;
 NPOW = sum(NP(:))/numel(n);
 NCORR = fftshift(real(ifftn(NP)));
@@ -25,6 +24,7 @@ ICORR = fftshift(real(ifftn(IP)));
 
 NSR = NPOW ./ IPOW;
 
+% Wiener filter using both  power ratio and auto correlation.
 I2 = deconvwnr(I1, h, NSR);
 I3 = deconvwnr(I1, h, NCORR,ICORR);
 
