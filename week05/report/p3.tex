@@ -1,0 +1,11 @@
+\section{Task 3}
+The code for creating Figure \ref{fig:p3} can be found in the appendix.
+
+\graphicc{1}{img/p3.png}{The two upper rows are images, their sinograms and the filtered
+    backprojection of their sinograms. The lower row is a sinogram, the same sinogram rotated and
+    finally the filtered backprojection of the rotated sinogram.}{fig:p3}
+
+For this task a ramp filter is applied using FFT convolution during the backprojecting function in
+order to remove some of the ``blur'' that occurs during the normal backprojection. This decrease in
+blur comes a a price since some of the original colour get lots and is replaced by radiating lines
+from the projection angles.

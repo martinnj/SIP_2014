@@ -1,0 +1,27 @@
+\section{Task 4}
+The code for creating Figure \ref{fig:p4box} and Figure \ref{fig:p4mir} can be found in the appendix.
+
+Figure \ref{fig:p4box} and Figure \ref{fig:p4mir} shows the difference the $M$ value have on both
+the sinogram, and the reconstruction afterwards. For my example I used the \textit{box.png} image as
+instructed. I chose the \textit{mir.tif} image as a supplement since this technique is primarily
+used for medicinal imaging, and as such a medicinal image would be a good test case.
+
+We can see that as $M$ increase, the sinograms grow bigger and bigger, but also that the
+reconstructions gets better and better. At lower $M$ values it's possible to see the different
+projection angles around the objects.
+
+When the $M$ value crosses a certain threshold we do not gain any more new information for the
+resulting reconstruction. (I attempted with both $M=512, M=1024$, $M=2048$ and $M=4096$, there was no
+visible difference from $M=256$) This is because the projection angles start to overlap with each
+other and infer the same information multible times. For a bigger image (higher resolution) more
+angles will make a bigger difference since there will be further between data points along the
+edges, but for these sizes it does not matter.
+
+Please note that the code in Figure \ref{code:p4} will only produce on of the figures, to produce
+the other, you will need to change the value of the \texttt{file} variable.
+
+\begin{landscape}
+\centering
+\graphicc{1.55}{img/p4box.png}{The image \textit{box.png} using different values for $M$.}{fig:p4box}
+\graphicc{1.55}{img/p4mir.png}{The image \textit{mir.tif} using different values for $M$.}{fig:p4mir}
+\end{landscape}
