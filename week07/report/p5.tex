@@ -1,0 +1,13 @@
+\section{Task 5}
+The code for producing Figure \ref{fig:p51}can be found in the appendix.
+
+Using binary hit-miss will not detect the digit in the image. This is because the normal hit-miss will
+discard a possible hit if even one pixel is off, the solution is to use a relaxed version with
+``don't care'' pixels instead.
+
+\graphicc{0.85}{img/p51.png}{The marked positions in the \textit{test_digits.bmp}image.}{fig:p51}
+
+I created a function \texttt{FindDigits} which takes an image and a cell array of digit images, and returns a cell array with all the positions where the digits are found in the image.
+For marking them I created the function \texttt{MarkDigits} which takes a cell array of coordinates and marks them all with a plus sign. Figure \ref{fig:p51} is the result
+of running the two functions on \textit{test_digits.bmp} with the digit images (\textit{zero.bmp}, \textit{one.bmp}, ...) as digit images.
+Despite the name the functions would work with any other symbol, I just called them ``digit'' because that is our case here.

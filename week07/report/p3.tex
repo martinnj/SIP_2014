@@ -1,0 +1,32 @@
+\section{Task 3}
+Figure \ref{fig:p3orig} shows the image used as base for this task.
+
+\graphicc{0.5}{img/blobs.png}{The \textit{blobs.png} image.}{fig:p3orig}
+
+The code for producing Figure \ref{fig:p311}, Figure \ref{fig:p312} and Figure \ref{fig:p313} can be
+found in the appendix.
+
+In this section I test several morphological functions with different structuring elements, the following functions are tested:
+\begin{itemize}
+    \item[Hit-Miss] The logical and  of the image $A$eroded with a structuring element $B$ and the
+    image eroded with the inverse of the structuring element, $B_i$. Formally written as:
+   \[ A \otimes B = (A \ominus B) \intersect (A \iminus B_i) \]
+   It is used for extracting and finding features in the foreground that are similar/akin to the structuring element.
+   
+   \item[Top Hat] Subtraction of the opened version of the image from the original image $A$. Formally written as:
+   \[ A - (A \ominus B) \oplus B \]
+   It extracts elements that are smaller than the structuring element and have higher intensities than their neighbourhood.
+   
+   \item[Bottom Hat] Subtraction of an image $A$ from the closed version of that image.Formally written as:
+   \[ ((A \oplus B) \ominus B) - A \]
+   It extracts elements that are smaller than the structuring element and have lower intensities than their neighbourhood.
+\end{itemize}
+
+I did this test with 3 different shapes of structuring elements, the diamond, the octagon and the square.
+Figure \ref{fig:p311} shows the result of applying the functions using a diamond structuring element with radius $r=1..4$.
+Figure \ref{fig:p312} shows the result of applying the functions using a octagon structuring element with radius $r=3, 6, 9$ and $12$.
+Figure \ref{fig:p313} shows the result of applying the functions using a box structuring element with height/width $r=1..4$.
+
+\graphicc{0.8}{img/p311.png}{The three functions with a diamond structuring element of varying size.}{fig:p311}
+\graphicc{0.8}{img/p312.png}{The three functions with a octagon structuring element of varying size.}{fig:p312}
+\graphicc{0.8}{img/p313.png}{The three functions with a box structuring element of varying size.}{fig:p313}

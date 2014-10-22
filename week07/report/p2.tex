@@ -1,0 +1,24 @@
+\section{Task 2}
+The code for producing Figure \ref{fig:p21} and Figure \ref{fig:p22} can be found in the appendix.
+
+\graphicc{0.8}{img/p21.png}{The results fo different morphological operations on the source image.}{fig:p21}
+
+For illustrative purposes I showed both opening and closing using the builtin \texttt{imclose}/\texttt{imopen} functions,
+and  each substep using the \texttt{imerode} and \texttt{imdilate} functions.
+
+Opening will minimize the amount of clutter and small objects in an image, whereas closing will try
+to magnify them, essentially allowing many smaller objects to be unified in one big object. As seen
+in Figure \ref{fig:p21} the small ``strands'' running from the bigger blop are all eliminated when
+opening the image, while they get beefed up when closing it.
+
+When opening an image we first Erode the image, causing all the small details and objects to disappear,
+and the bigger objects to ``shrink''. to counter this shrinking we then dilate the image with the same
+structure, causing the objects to grow, but since the smallest objects are gone, they cannot regrow.
+
+When closing an image, we do the opposite, we dilate the image causing small objects to grow and merge,
+and the dilate it to shrink the objects back down.
+
+In order to create a single blob using either opening or closing the radius $r$ of the diamond structure should be $r=2$.
+Figure \ref{fig:p22}shows the results of using different $r$-values with both opening and closing on the original image.
+
+\graphicc{0.7}{img/p22.png}{The result of suing different $r$ values for the structuring element.}{fig:p22}
