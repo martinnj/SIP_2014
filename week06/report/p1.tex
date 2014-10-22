@@ -1,0 +1,83 @@
+\section{Task 1: Experiments on translations}
+
+\subsection{Part 1}
+The general recipe for creating a translation transformation matrix is
+\begin{align}
+    M_\text{trans} &= \begin{bmatrix}
+                        1 & 0 & x_d \\
+                        0 & 1 & y_d \\
+                        0 & 0 & 1 
+                      \end{bmatrix}
+                      \label{eq:mtrans} \\
+    \begin{bmatrix}
+        g_x \\ g_y \\ \_
+    \end{bmatrix}    &= M_\text{trans} \times \begin{bmatrix}
+                                      f_x \\ f_y \\ 1
+                                    \end{bmatrix} \label{eq:mapply}
+%\caption{General transformation matrix and formula for applying it.}
+\end{align}
+where $x_d$ and $y_d$ are the offsets we wish to impose on the $x$ and $y$-axis respectively and
+$f_x$ and $f_y$ are coordinates in the original image.
+
+Using Equation \ref{eq:mtrans} the matrix for translating 1 pixel to the right is 
+\begin{align*}
+       M &= \begin{bmatrix}
+              1 & 0 & x_d \\
+              0 & 1 & 0   \\
+              0 & 0 & 1   \\
+            \end{bmatrix}.
+\end{align*}
+
+If we wish to create a kernel/filter for translating $1px$ towards the right, we use the following matrix
+\begin{align*}
+    M_{filter} &= \begin{bmatrix}
+                    0 & 0 & 0 \\
+                    1 & 0 & 0 \\
+                    0 & 0 & 0
+                  \end{bmatrix}
+\end{align*}
+The code for creating this matrix is found in the appendix.
+
+When convolved with an image this filter will make all pixels assume the value of their left
+neighbour, effectively translation the entire image $1px$ to the right.
+
+\subsection{Part 2}
+
+Using the method described in Equation \ref{eq:mtrans} and \ref{eq:mapply} I
+created the function \texttt{MyTranslate} which takes an image and two integers
+as input, the integers are the offset to translate with. The code for the
+function and for creating Figure \ref{fig:p12} as well as the code for the
+function can be found in the appendix.
+
+\graphicc{0.8}{img/p12.png}{The image before and after translation.}{fig:p12}
+
+The handling of boundary conditions in my implementation is simple, all of the output
+image is initialized to 0. This means that pixels that don't get assigned a
+value will just stay zero, coordinates from the old image that translates
+outside the bounds of the output (which have the same size as the input), are
+simply ignored.
+
+\subsection{Part 3}
+
+Translation in the Frequency domain is given by
+\begin{align}
+    f(x-\Delta x, y-\Delta y) &= F(u,v) e^{-i2\pi (\frac{u\Delta x}{N} + \frac{v\Delta y}{M})}
+\end{align}
+
+Where $M$ is the number of rows in the image, and $N$ is the number of columns.
+
+\graphicc{0.8}{img/p13.png}{The image before and after translation.}{fig:p13}
+
+The code for producing Figure \ref{fig:p13} can be found in the appendix along
+with the code for my translation function called \texttt{MyFTranslate}.
+
+\subsection{Part 4}
+
+The code for producing Figure \ref{fig:p14} can be found in the appendix.
+
+\graphicc{0.8}{img/p14.png}{The image before and after translation.}{fig:p14}
+
+We can see that the translation does not go smoothly, in the lena image we see
+that the image gets significantly brighter when it gets translated, and in the
+point image we can see why, the bright spots gets ``smeared'' out in the
+directions the image gets translated.

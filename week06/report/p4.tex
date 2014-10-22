@@ -1,0 +1,48 @@
+\section{Task 4: Affine and projective alignments}
+
+\subsection{Part 1}
+
+The main appeal is the ability to use one single matrix multiplication to do all
+the transformations needed. It also allows us to append transformations as a
+chain of matrix multiplications.  A single transformation would be
+\begin{align}
+    \begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} &=
+      M \begin{bmatrix} x \\ y \\ 1 \end{bmatrix} \label{eq:step1}
+\end{align}
+Since the result of the multiplication in Equation \ref{eq:step1} is also a
+3-element vector, we can simply chain multiplications on like so
+\begin{align}
+    \begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} &= 
+      M_n, M_{n-1}, ..., M_0 \begin{bmatrix} x \\ y \\ 1 \end{bmatrix} \label{eq:step2}
+\end{align}
+
+
+\subsection{Part 2}
+
+The code for producing Figure \ref{fig:p42} can be found in the appendix.
+
+\graphicc{0.8}{img/p42.png}{Left: $X$ and $Y$ drawn in the same plot. Right: Same plot, but with a Procrustes aligned X overlaid.}{fig:p42}
+
+It will not be possible to get an exact match for $X$ mapped to $Y$ since the
+edges in $X$ are pairwise parallel, whereas only 2 edges in $Y$ are
+parallel. Neither translation, rotation or scaling, the angles between edges in the figure.
+Figure \ref{fig:p42} shows the closest mapping Procrustes analysis can create.
+
+\subsection{Part 3}
+The code for producing Figure \ref{fig:p43} can be found in the appendix.
+\graphicc{0.8}{img/p43.png}{Left: $X$ and $Y$ drawn in the same plot. Right: Same plot, but with a Affine transformed X overlaid.}{fig:p43}
+
+Figure \ref{fig:p43} shows the result of the affine transformation, we can see that because we're also
+able to shear the figure, we get a slightly closer match. We are still not able to break the parallel relationship of edges though.
+
+
+\subsection{Part 4}
+The code for producing Figure \ref{fig:p44} can be found in the appendix.
+\graphicc{0.8}{img/p44.png}{Left: $X$ and $Y$ drawn in the same plot. Right: Same plot, but with a Projective transformed X overlaid.}{fig:p44}
+
+Figure \ref{fig:p44} is the result of using Projective transformation on X. The ability to manipulate
+$X$ in 3D space allows us to break the parallel relationship of edges and make a near perfect match.
+
+According to Matlab there is some small differences, but they seem so small that it might be due to
+lost floating point precision in the processing. The transformed $X$ and $Y$ are to all intents and
+purposes matching.

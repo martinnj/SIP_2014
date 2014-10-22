@@ -1,0 +1,48 @@
+\section{Task 2: Procrustes transformations}
+
+\subsection{Part 1}
+
+%There is 4 free variables for the Procrustes transformation, see page 176 for details.
+%Figure 7.12 is the transformation matrix and contains them all.
+
+%The value for N is mentioned in section 7.7.
+
+%Need 1 for translation and two for scale.
+
+For translation only, the minimum $N$ is 1, since we can do translation from one point to another, by subtracting them.
+The same goes for scaling, except it is simply multiplying the single point until the MSE stops falling.
+
+
+\subsection{Part 2}
+
+The code for producing the values in Equation \ref{eq:22} and Figure
+\ref{fig:p22} can be found in the appendix.
+
+Filling the values printed from \texttt{p22.m} into Equation (7.13) from p. 176
+into the matrices we get the result show in Equation \ref{eq:22}.
+
+\begin{align}
+  \text{\textbf{X}} &= \begin{bmatrix}
+    1 & 0 & -80.4378 \\
+    0 & 1 & 6.2076   \\
+    0 & 0 & 1
+  \end{bmatrix},
+  \text{\textbf{R}} = \begin{bmatrix}
+    0.9864 & -0.1647 & 0 \\
+    0.1647 & 0.9863  & 0 \\
+    0 & 0 & 1
+  \end{bmatrix},
+  \text{\textbf{S}} = \begin{bmatrix}
+    1.0893 & 0 & 0 \\
+    0 & 1.0893 & 0 \\
+    0 & 0 & 1
+  \end{bmatrix}
+  \label{eq:22}
+\end{align}
+
+\graphicc{1}{img/p22.png}{The two images and the result of performing a
+  procrustes transformation and overlaying the result with the
+  original.}{fig:p22}
+
+  In Figure \ref{fig:p22} we see that the features of the images overlay very well meaning the
+  MRE for the alignment will be very small.
